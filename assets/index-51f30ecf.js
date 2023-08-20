@@ -93,7 +93,13 @@ There is a fair amount of complexity here that attempts to build a relatively un
 - Custom Stop Sequences and Delimiter Sequence to keep the completion from running on. (Sometimes you may end up with an empty completion.)
 - Summary prompt for continuous chat. It will trigger after 60% token use of the current model (0.6) and try to form a summary of the current conversation that's less than 500 tokens.  This can be kind of hit or miss. Sometimes you'll get a great summary, other times you'll get nonsense.
 
-Keep in mind that most models don't respond well to negative prompts. Telling it not to do something will often result in the opposite. For example, "you are unapologetic" may work better than "you never apologize", or "you are succinct" could be better than "don't be long-winded".  The simple existence of terms long-winded and apologize will add weight to completions that do just that.`,useSystemPrompt:!0,sendSystemPromptLast:!1,continuousChat:"summary",hiddenPromptPrefix:`###
+Keep in mind that most models don't respond well to negative prompts. Telling it not to do something will often result in the opposite. For example, "you are unapologetic" may work better than "you never apologize", or "you are succinct" could be better than "don't be long-winded".  The simple existence of terms long-winded and apologize will add weight to completions that do just that.`,useSystemPrompt:!0,sendSystemPromptLast:!1,continuousChat:"summary",summaryPrompt:`###
+### Current user request:
+Without talking about it at all, [[CHARACTER_NAME]], your next response must generate a succinct summary of all previous interactions between, you, [[CHARACTER_NAME]], and I. Merge this summary with any previous summaries. Compress the summary in a way where important details are kept. Anything left out from this summary will be lost from your memory forever. It is important to keep pivotal details. This summary is for you, [[CHARACTER_NAME]] and is essential for your memory.
+You must use no more than [[MAX_WORDS]] when generating this summary. Keep as much detail as you can, what we did, what we talked about, what happened, what we shared. Include all important details up to the present.
+
+Example template for summary:
+First we... then you... then I... and the... we continued to... you and I just... we're about to...`,hiddenPromptPrefix:`###
 ### Current user prompt:
 [[USER_PROMPT]]`,autoStartSession:!1,systemPrompt:`::NOTE::
 #### WARNING
